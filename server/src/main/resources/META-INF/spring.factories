@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+test.widget.server.autoconfigure.EntityManagerBasedConfiguration
+
