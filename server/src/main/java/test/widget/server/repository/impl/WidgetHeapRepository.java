@@ -33,7 +33,6 @@ public class WidgetHeapRepository implements WidgetRepository {
     @SneakyThrows(CloneNotSupportedException.class)
     public void save(final Widget widget) {
         final Widget cloned = widget.clone();
-        cloned.setNew(false);
         widgets.put(widget.getId(), cloned);
     }
 

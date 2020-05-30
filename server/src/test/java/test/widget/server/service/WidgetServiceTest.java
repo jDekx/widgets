@@ -32,6 +32,11 @@ public class WidgetServiceTest {
     private WidgetRepository widgetRepository;
 
     /**
+     * Widget filtering service.
+     */
+    private WidgetFilteringService widgetFilteringService;
+
+    /**
      * Server configuration properties.
      */
     private ServerConfigurationProperties properties;
@@ -39,10 +44,11 @@ public class WidgetServiceTest {
     @Before
     public void setUp() {
         widgetRepository = Mockito.mock(WidgetRepository.class);
+        widgetFilteringService = Mockito.mock(WidgetFilteringService.class);
         properties = new ServerConfigurationProperties();
         properties.setInitialZIndex(0);
 
-        widgetService = new WidgetService(widgetRepository, properties);
+        widgetService = new WidgetService(widgetRepository, properties, widgetFilteringService);
     }
 
     /**
@@ -103,20 +109,6 @@ public class WidgetServiceTest {
 
         //then
         verify(widgetRepository, never()).save(any());
-    }
-
-    /**
-     * Asserts that {@link WidgetService#createNew()} creates new object.
-     * Checks that {@link Widget#getId()} and {@link Widget#isNew()} are initialized.
-     */
-    @Test
-    public void testNewWidgetCreation() {
-        //given
-        final Widget widget = widgetService.createNew();
-        //when
-        //then
-        assertThat(widget.getId()).isNotEmpty();
-        assertThat(widget.isNew()).isTrue();
     }
 
     /**

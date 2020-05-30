@@ -45,7 +45,7 @@ public class WidgetHeapRepositoryTest {
         @SuppressWarnings("OptionalGetWithoutIsPresent") final Widget foundWidget = repository.findById("1").get();
 
         assertThat(foundWidget).isNotSameAs(widget);
-        assertThat(foundWidget.isNew()).isFalse();
+        assertThat(foundWidget.isNew()).isTrue();
     }
 
     /**

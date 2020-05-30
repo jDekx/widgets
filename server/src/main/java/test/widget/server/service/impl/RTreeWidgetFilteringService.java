@@ -31,7 +31,7 @@ public class RTreeWidgetFilteringService implements WidgetFilteringService {
                 .map(widget -> EntryDefault.entry(widget, RectangleFloat.create(widget.getX(), widget.getY(), widget.getX() + widget.getWidth(), widget.getY() + widget.getHeight())))
                 .collect(Collectors.toSet());
 
-        final RTree<Widget, Rectangle> tree = RTree.<Widget, Rectangle>create().add(entries);
+        final RTree<Widget, Rectangle> tree = RTree.minChildren(8).maxChildren(64).<Widget, Rectangle>create().add(entries);
 
         final Rectangle areaRectangle = Geometries.rectangle(area.getX(), area.getY(), area.getX() + area.getWidth(), area.getY() + area.getHeight());
 
